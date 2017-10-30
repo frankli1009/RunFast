@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Welcome To Card Game - RunFast";
+}
+
+<div class="text-center hidden-xs">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+@*<h4>@Request.UserHostName</h4>
+<h4>@Request.UserHostAddress</h4>*@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+            <p> </p>
+            <p id="lesspoint" class="nodisplay boldpink">
+                You have only <span id="score">0 point</span> now, to play games, 
+                <span id="aid"> click <a href="#" id="getaid">AID</a> to get some points from an aid, 
+                or </span>click @Html.ActionLink("BUY", "BuyPoint") to buy some points.
+            </p>
+            <a class="btn btn-default fullwidth" href="#" id="localgame">Local Game</a>
+            <p>New to the RunFast card game? No worries, you can have a try on "Local Game". </p>
+            @*@Html.ActionLink("Local Game", "LocalGame", null, new { @class = "btn btn-default fullwidth" })*@
+        </div>
+        <div></div>
+        <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+            @Html.ActionLink("Online Game", "OnlineGame", null, new { id="onlinegame", @class = "btn btn-default btn-primary fullwidth" })
+            @{
+                if (ViewBag.LoggedIn == 0)
+                {
+                    <p>@Html.ActionLink("Log in", "Login", "Account")<span> if you want to enjoy more and play online games.</span></p>
+                }
+                else
+                {
+                    <p>@Html.ActionLink("Log in", "Login", "Account", new { @class = "disabled" })<span> if you want to enjoy more and play online games.</span></p>
+                }
+            }
+        </div>
+        <div class="nodisplay">
+            <div id="loggedin">@ViewBag.LoggedIn</div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/my_helper.js"></script>
+    <script src="~/Scripts/check_score.js"></script>
+    <script src="~/Scripts/guest_player.js"></script>
+}

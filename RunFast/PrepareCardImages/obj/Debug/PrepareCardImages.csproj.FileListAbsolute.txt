@@ -1,0 +1,17 @@
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunsFast\PrepareCardImages\bin\Debug\PrepareCardImages.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunsFast\PrepareCardImages\bin\Debug\PrepareCardImages.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunsFast\PrepareCardImages\bin\Debug\PrepareCardImages.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunsFast\PrepareCardImages\obj\Debug\PrepareCardImages.Properties.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunsFast\PrepareCardImages\obj\Debug\PrepareCardImages.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunsFast\PrepareCardImages\obj\Debug\PrepareCardImages.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunsFast\PrepareCardImages\obj\Debug\PrepareCardImages.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunsFast\PrepareCardImages\obj\Debug\PrepareCardImages.FormPrepareCardImages.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunFast\PrepareCardImages\bin\Debug\PrepareCardImages.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunFast\PrepareCardImages\bin\Debug\PrepareCardImages.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunFast\PrepareCardImages\bin\Debug\PrepareCardImages.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunFast\PrepareCardImages\obj\Debug\PrepareCardImages.FormPrepareCardImages.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunFast\PrepareCardImages\obj\Debug\PrepareCardImages.Properties.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunFast\PrepareCardImages\obj\Debug\PrepareCardImages.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunFast\PrepareCardImages\obj\Debug\PrepareCardImages.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunFast\PrepareCardImages\obj\Debug\PrepareCardImages.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\RunFast\PrepareCardImages\obj\Debug\PrepareCardImages.csprojResolveAssemblyReference.cache

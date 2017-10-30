@@ -1,0 +1,510 @@
+﻿@{
+    ViewBag.Title = "About Run Fast";
+}
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>RUN FAST is designed and created by Frank Li and as one of his portfolio project to illustrate his skills on relative areas.</p>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingGameRules">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#gameRules" aria-expanded="true" aria-controls="gameRules">
+                    <i class="more-less glyphicon glyphicon-plus"></i>
+                    1 Game rules
+                </a>
+            </h4>
+        </div>
+
+        <div id="gameRules" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGameRules">
+            <div class="panel-body">
+
+                <div class="panel-group" id="accordionGameRules" role="tablist" aria-multiselectable="true">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingGRGeneralRules">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionGameRules" href="#grGeneralRules" aria-expanded="true" aria-controls="grGeneralRules">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    1.1 General rules
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="grGeneralRules" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGRGeneralRules">
+                            <div class="panel-body">
+                                <p>1.1.1 There are four suits of cards in a game which are spades(♠), hearts(<span class="red">♥</span>), clubs(♣) and diamonds(<span class="red">♦</span>).</p>
+
+                                <p>1.1.2 There are total 48 cards in a game which are one of “2” (♠), three of “A” (all suits except ♠), four of “3”, “4”, “5”, “6”, “7”, “8”, “9”, “10”, “J”, “Q” and “K” (all suits).</p>
+
+                                <p>1.1.3 There are total seven types of deals that you can make in a game.</p>
+
+                                <p>
+                                    1.1.3.1 Single<br />
+                                    Single is a deal with only one card, like hearts “3”, diamonds “6”, clubs “K”, spades “2”, etc.
+                                </p>
+
+                                <p>
+                                    1.1.3.2 Pair<br />
+                                    Pair is a deal with two cards which have the same number of pips, like spades “4” and diamonds “4”, diamonds “J” and clubs “J”, hearts “A” and clubs “A”, etc.
+                                </p>
+
+                                <p>
+                                    1.1.3.3 Triplet<br />
+                                    Triplet is a deal with three cards which have the same number of pips.<br />
+                                    There is an exception with triple “A”s which are considered as a bomb rather than a triplet since there are only three “A”s in a game.
+                                </p>
+
+                                <p>
+                                    1.1.3.4 Bomb<br />
+                                    Bomb  is a deal with four cards which have the same number of pips.<br />
+                                    As 1.1.3.3 says, Triple “A”s are considered as a special bomb.
+                                </p>
+
+                                <p>
+                                    1.1.3.5 Full house<br />
+                                    Full house is a deal with five cards which are made up of one triplet and one pair.
+                                </p>
+
+                                <p>
+                                    1.1.3.6 Straight<br />
+                                    Straight is a deal with five or more cards which have the consecutive number of pips. For example,  “3, 4, 5, 6, 7” is a straight, and “9, 10, J, Q, K” is another straight.<br />
+                                    The cards in a straight can be in either the same suit or different suits.
+                                </p>
+
+                                <p>
+                                    1.1.3.7 Pair straight<br />
+                                    Pair straight is a deal very similar to a straight except that it is made up of three or more pairs which have the consecutive number of pips.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingGRGameRank">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionGameRules" href="#grGameRank" aria-expanded="true" aria-controls="grGameRank">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    1.2 Rank
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="grGameRank" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGRGameRank">
+                            <div class="panel-body">
+                                <p>
+                                    1.2.1 Single<br />
+                                    Rank for singles in ascending is “3”, “4”, “5”, “6”, “7”, “8”, “9”, “10”, “J”, “Q”, “K”, “A”, “2”.<br />
+                                    Singles with different suits but same number of pips are at the same rank.
+                                </p>
+
+                                <p>
+                                    1.2.2 Pair<br />
+                                    Rank for pairs in ascending is “3”, “4”, “5”, “6”, “7”, “8”, “9”, “10”, “J”, “Q”, “K”, “A”.<br />
+                                    Pairs with different suits but same number of pips are at the same rank.
+                                </p>
+
+                                <p>
+                                    1.2.3 Triplet
+                                    Rank for triplets in ascending is “3”, “4”, “5”, “6”, “7”, “8”, “9”, “10”, “J”, “Q”, “K”.
+                                </p>
+
+                                <p>
+                                    1.2.4 Bomb<br />
+                                    Rank for bombs in ascending is “3”, “4”, “5”, “6”, “7”, “8”, “9”, “10”, “J”, “Q”, “K”, “A”.<br />
+                                </p>
+
+                                <p>
+                                    1.2.5 Full house<br />
+                                    Rank for full houses is decided by the triplet that the full house has, and it doesn’t matter what pair it has.
+                                </p>
+
+                                <p>
+                                    1.2.6 Straight<br />
+                                    Rank for straight is based on the straights having the same number of cards.<br />
+                                    Two straights which have different number of cards can’t be compared.<br />
+                                    Straights with only one suit of cards are at the higher rank than any one with different suit of cards.<br />
+                                    Rank for straights is decided by the ranking of the card with the highest rank in the straight.<br />
+                                    Straights with different suits of cards have the same rank if the cards' rankings with the highest rank in the two straights are the same.<br />
+                                    Rank for straights with only one suit of cards in ascending is diamonds(<span class="red">♦</span>), clubs(♣), hearts(<span class="red">♥</span>) and spades(♠)
+                                    if the cards' rankings with the highest rank in the two straights are the same.<br />
+                                    "2" does not join any straight and "A" can only follow "K" in a straight, so the longest straight can be “3, …, J, Q, K, A” with total 12 cards.
+                                </p>
+
+                                <p>
+                                    1.2.7 Pair straight<br />
+                                    Rank for pair straights is based on the pair straights having the same number of pairs of cards.<br />
+                                    Two pair straights which have different number of pairs can’t be compared.<br />
+                                    Rank for pair straights is decided by the ranking of the pair with the highest rank in the pair straight.
+                                </p>
+
+                                <p>
+                                    1.2.8.Different types<br />
+                                    Different types of deals can't be compared except bombs.
+                                    Bombs can deal any other types of deals and are at the higher rank.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingGRPlayCards">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionGameRules" href="#grPlayCards" aria-expanded="true" aria-controls="grPlayCards">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    1.3 Playing card
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="grPlayCards" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGRPlayCards">
+                            <div class="panel-body">
+                                <p>
+                                    1.3.1 A game must have three players to play with, and all players are opponents to the other two players.
+                                </p>
+
+                                <p>
+                                    1.3.2 A game may have one or more battles.
+                                </p>
+
+                                <p>
+                                    1.3.3 Each game starts by the player who holds spades 3 after shuffle and allocate.<br />
+                                    The player can make any type of deal at any rank to start the first battle of a game.
+                                </p>
+
+                                <p>
+                                    1.3.4 Turn for players to take part in a battle is in a counterclockwise order.
+                                </p>
+
+                                <p>
+                                    1.3.5 Players can either make the same type of deal with higher rank to continue the battle.
+                                </p>
+
+                                <p>
+                                    1.3.6 Players can also make a bomb deal to continue the battle when deal with other types of deals.
+                                </p>
+
+                                <p>
+                                    1.3.7 Players can also choose "PASS" to give up their turn to make a deal.
+                                </p>
+
+                                <p>
+                                    1.3.8 A battle ends when two opponents successively choose "PASS", and the player who make the deal last wins the battle and gets a chance to start a new battle by making any type of deal at any rank.
+                                </p>
+
+                                <p>
+                                    1.3.9 A game ends when one of the players has dealt all cards, and the player wins the game.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingGRScore">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionGameRules" href="#grGameScore" aria-expanded="true" aria-controls="grGameScore">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    1.4 Score
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="grGameScore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGRScore">
+                            <div class="panel-body">
+                                <p>
+                                    1.4.1 When a game ends, two losers will be deducted relative points which will be added to the winner.
+                                </p>
+
+                                <p>
+                                    1.4.2 A loser will be deducted the points as the number of cards that the loser still holds when it is less than 10.
+                                </p>
+
+                                <p>
+                                    1.4.3 A loser will be deducted 50 points when the loser doesn’t deal any card in a game.
+                                </p>
+
+                                <p>1.4.4 Otherwise, a loser will be deducted the points twice as the number of cards that the loser still holds when the game ends.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingGamePlayers">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#gamePlayers" aria-expanded="true" aria-controls="gamePlayers">
+                    <i class="more-less glyphicon glyphicon-plus"></i>
+                    2 Game players
+                </a>
+            </h4>
+        </div>
+
+        <div id="gamePlayers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGamePlayers">
+            <div class="panel-body">
+
+
+                <div class="panel-group" id="accordionGamePlayers" role="tablist" aria-multiselectable="true">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingGPGameTypes">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionGamePlayers" href="#gpGameTypes" aria-expanded="true" aria-controls="gpGameTypes">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    2.1 Game types
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="gpGameTypes" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGPGameTypes">
+                            <div class="panel-body">
+                                <p>
+                                    2.1.1 Local game<br />
+                                    A local game is a game in which a user (player) plays with two computer opponents.
+                                </p>
+
+                                <p>
+                                    2.1.2 Online game<br />
+                                    An online game is a game in which a user (player) plays with two other users (players) on the internet.<br />
+                                    An online game provides a message bulletin board to display the messages that players post.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingGPGamePlayers">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionGamePlayers" href="#gpGamePlayers" aria-expanded="true" aria-controls="gpGamePlayers">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    2.2 Game players
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="gpGamePlayers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGPGamePlayers">
+                            <div class="panel-body">
+                                <p>There are three types of players in this card game.</p>
+
+                                <p>
+                                    2.2.1 Guest player<br />
+                                    A guest player is a player who hasn't registered in the game centre.<br />
+                                    Guest players can only play local games.<br />
+                                    Guest players will hold 100 initial points.<br />
+                                    Guest players will be deducted 50 points when quitting a game that has not yet finished.
+                                </p>
+
+                                <p>
+                                    2.2.2 Registered player<br />
+                                    A registered player is a player who has registered in the game centre.<br />
+                                    Registered players can play both local games and online games.<br />
+                                    Registered players will be automatically allocated a game table to play an online game.<br />
+                                    Registered players will hold 300 initial points.<br />
+                                    Registered players will be deducted 50 points when quitting a game that has not yet finished.
+                                </p>
+
+                                <p>
+                                    2.2.3 VIP player<br />
+                                    A VIP player is a player who has registered in the game centre and also paid for the VIP seat.<br />
+                                    VIP players can play both local games and online games.<br />
+                                    VIP players can choose to be automatically allocated a game table to play an online game.<br />
+                                    VIP players can also create a new game table and invite friends who are either registered players or VIP players to the table.<br />
+                                    VIP players will hold 1000 initial points.<br />
+                                    VIP players will be deducted 50 points when quitting a game that has not yet finished.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingExtraInformation">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#extraInformation" aria-expanded="true" aria-controls="extraInformation">
+                    <i class="more-less glyphicon glyphicon-plus"></i>
+                    3 Extra information
+                </a>
+            </h4>
+        </div>
+
+        <div id="extraInformation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingExtraInformation">
+            <div class="panel-body">
+
+                <div class="panel-group" id="accordionExtraInformation" role="tablist" aria-multiselectable="true">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingEITime">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionExtraInformation" href="#eiTime" aria-expanded="true" aria-controls="eiTime">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    3.1 Time limitation
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="eiTime" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEITime">
+                            <div class="panel-body">
+
+                                <p>3.1.1 The time limit for starting a new game is 20 seconds. If the player who is going to start a new game does not make a deal within 20 seconds, a single deal with the card at the lowest rank being held by him/her will be automatically made.</p>
+
+                                <p>3.1.2 The time limit for starting a new battle except the first battle of a game is 15 seconds. If the player who is going to start a new battle does not make a deal within 15 seconds, a single deal with the card at the lowest rank being held by him/her will be automatically made.</p>
+
+                                <p>3.1.3 The time limit for continuing a battle is 15 seconds. If the player who gets the turn does not make a deal, a "PASS" deal will be automatically made.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingEIHost">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionExtraInformation" href="#eiHost" aria-expanded="true" aria-controls="eiHost">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    3.2 Host
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="eiHost" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEIHost">
+                            <div class="panel-body">
+                                <p>3.2.1 Players can choose "HOST" to take a leave with 5 points deducted and let cards be played by the computer in an online game.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingEIPickCards">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionExtraInformation" href="#eiPickCards" aria-expanded="true" aria-controls="eiPickCards">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    3.3 Pick out cards
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="eiPickCards" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEIPickCards">
+                            <div class="panel-body">
+
+                                <p>
+                                    3.3.1 Players can click on each card to select all the cards needed to make a deal.<br />
+                                    Players can also click on a card and hold down the mouse and then drag the mouse to select all the cards needed to make a deal.
+                                </p>
+
+                                <p>3.3.2 Battles of single, pair, triplet or bomb types of deals</p>
+
+                                <p>
+                                    3.3.2.1 Players can click on a card to toggle its state of being selected or not being selected.<br />
+                                    When there are just enough cards with the same number of pips as the deal needs, those cards will be toggled their state together.
+                                </p>
+
+                                <p>3.3.2.2 Players can continue to click on other cards with different number of pips to toggle their state.</p>
+                                <p>And the cards which are previously selected will automatically change to not-being-selected state at first.</p>
+
+                                <p>3.3.3 Battles of full house deal</p>
+
+                                <p>
+                                    3.3.3.1 Players can click on a card to toggle the state of a triplet or a pair according to the number of the cards with the same pips.<br />
+                                    A triplet is preferable.
+                                </p>
+
+                                <p>3.3.3.2 Successive clicks will check whether a triplet or a pair is needed and automatically toggle the state of it as needed.</p>
+
+                                <p>3.3.3.3 Players can click on a card and hold down the mouse and then drag the mouse to select all the cards needed to toggle their state.</p>
+
+                                <p>3.3.4 Battles with straight and pair straight</p>
+
+                                <p>3.3.4.1 Players can click on the last card or one card of the last pair in the straight or pair straight to automatically toggle the cards’ state.</p>
+
+                                <p>3.3.4.2 Players can click on a card and hold down the mouse and then drag the mouse to select all the cards needed to toggle their state.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingEIMakeDeal">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionExtraInformation" href="#eiMakeDeal" aria-expanded="true" aria-controls="eiMakeDeal">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    3.4 Make deal
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="eiMakeDeal" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEIMakeDeal">
+                            <div class="panel-body">
+                                <p>3.4.1 Players can "PLACE" any type of cards to start a battle.</p>
+
+                                <p>3.4.2 Players can only "PLACE" cards at higher rank than the previous one to continue a battle.</p>
+
+                                <p>3.4.3 Players can "PLACE" a bomb in any type of battle and the successive bomb must be at a higher rank.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingEIPoints">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionExtraInformation" href="#eiPoints" aria-expanded="true" aria-controls="eiPoints">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    3.5 Points requirement
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="eiPoints" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEIPoints">
+                            <div class="panel-body">
+                                <p>3.5.1 Players must have at least 50 points to play a game.</p>
+
+                                <p>3.5.2 Guest players will be automatically awarded 30 points for every 10 games.</p>
+
+                                <p>3.5.3 Guest players can apply for a special subsidy of 100 points every 7 days when the points held is not enough to play a game.</p>
+
+                                <p>3.5.4 Registered players will be automatically awarded 30 points for every 6 games.</p>
+
+                                <p>3.5.5 Registered players can apply for a special subsidy of 200 points every 7 days when the points held is not enough to play a game.</p>
+
+                                <p>3.5.6 VIP players will be automatically awarded 50 points for every 6 games.</p>
+
+                                <p>3.5.7 VIP players can apply for a special subsidy of 300 points every 7 days when the points held is not enough to play a game.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingEIPayment">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordionExtraInformation" href="#eiPayment" aria-expanded="true" aria-controls="eiPayment">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    3.6 Fees and payment
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="eiPayment" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEIPayment">
+                            <div class="panel-body">
+                                <p>3.6.1 A VIP seat costs £6.00 per month or £66.00 per year.</p>
+
+                                <p>
+                                    3.6.2 Points cost<br />
+                                    200 points cost £2.00, 500 points cost £4.00, 1000 points cost £7.00, 2000 points cost £12.00.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- panel-group -->
+
+@section scripts {
+<script src="~/Scripts/my_script.js"></script>
+<script src="~/Scripts/my_helper.js"></script>
+<script src="~/Scripts/check_score.js"></script>
+}

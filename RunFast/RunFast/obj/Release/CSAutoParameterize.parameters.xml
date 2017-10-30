@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="RunFastDbContext-Web.config Connection String" description="RunFastDbContext 由应用程序在 web.config 中用来访问数据库的连接字符串。" defaultValue="data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\RunFast.mdf;integrated security=True;persist security info=True;connect timeout=30;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2015\\Projects\\RunFast\\RunFast\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='RunFastDbContext']/@connectionString" />
+  </parameter>
+  <parameter name="RunFastDbContext_DatabasePublish-Web.config Connection String" description="RunFastDbContext_DatabasePublish 由应用程序在 web.config 中用来访问数据库的连接字符串。" defaultValue="RunFastDbContext_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2015\\Projects\\RunFast\\RunFast\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='RunFastDbContext_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>

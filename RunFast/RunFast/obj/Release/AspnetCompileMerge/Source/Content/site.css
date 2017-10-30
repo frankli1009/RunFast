@@ -1,0 +1,376 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*******************************
+* Does not work properly if "in" is added after "collapse".
+*******************************/
+.panel-group .panel {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #EEEEEE;
+}
+
+.panel-default > .panel-heading {
+    padding: 0;
+    border-radius: 0;
+    color: #212121;
+    background-color: #FAFAFA;
+    border-color: #EEEEEE;
+}
+
+.panel-title {
+    font-size: 18px;
+    /*font-weight: bold !important;*/
+}
+
+.panel-title > a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.more-less {
+    float: right;
+    color: #212121;
+}
+
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #EEEEEE;
+}
+
+.nodisplay {
+    display: none;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.red {
+    color: #f00;
+}
+
+.btn.btn-default.fullwidth {
+    width: 100%;
+    font-size: 2em;
+    padding-top:10px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+div.hidden-xs>h2 {
+    font-size: 20px;
+}
+
+.container.gamecontainer {
+    width: 96%;
+    margin-top: 6px;
+}
+
+.col-xs-2.portraitimg {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.portrait {
+    width: 36px;
+    height: 47px;
+}
+
+.hiddencards, .hiddencmd {
+    display: none;
+}
+
+#cards, #gametable {
+    position: relative;
+}
+
+.cards {
+    position: absolute;
+    width: 48px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-container-Column {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardcount {
+    display:inline-block;
+    font-size:0.9em;
+    color: rgba(255, 255, 255, 1);
+    border: solid 1px rgba(255, 255, 255, 1);
+    background-color: rgba(64, 64, 160, 1);
+    width: 20px;
+    height: 20px;
+}
+
+.clockdiv {
+    width: 20px;
+    visibility:hidden;
+}
+
+.clock {
+    background-image: url("OtherImages/clock.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px 28px;
+    width: 20px;
+    height: 28px;
+    padding-top: 10px;
+    font-size:0.8em;
+    color:red;
+    font-weight:bold;
+}
+
+.playername {
+    color: rgba(255, 255, 255, 1);
+    border: solid 1px rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 64, 1);
+    width: 100%;
+    height: 30px;
+    margin: 2px auto;
+    text-align:center;
+}
+
+.scorediv {
+    color: rgba(255, 255, 255, 1);
+    border: solid 1px rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    background-color: rgba(0, 64, 0, 1);
+    width: 100%;
+    height: 30px;
+    margin: 2px auto;
+    text-align:center;
+}
+
+.scorediv::before {
+    background-image: url("/Content/OtherImages/golden.png");
+    width: 15px;
+    height: 15px;
+    background-size: 15px 15px;
+    content: "";
+    position: relative;
+    left: -2px;
+    top: 5px;
+    display: inline-block;
+}
+
+.score {
+    position: relative;
+    top: 3px;
+}
+
+.areadivcards {
+    height: 64px;
+}
+
+.gamebottom {
+    margin-top:10px;
+    background-color: #EEEEEE;
+}
+
+.passtext {
+    background-color: rgba(255,128,128,0.8);
+    color: rgba(0,0,0,1);
+    border: 1px solid rgba(255, 0, 0, 1);
+    z-index: 1000;
+    position: fixed;
+    width: 100px;
+}
+
+.gameover {
+    background-color: rgba(244,244,244,0.9);
+    color: rgba(255,64,64,1);
+    border: 1px solid rgba(255, 0, 0, 1);
+    z-index: 2000;
+    position: fixed;
+    width: 300px;
+}
+
+.gameover.lost {
+    color: rgba(64,64,255,1);
+    border: 1px solid rgba(0, 0, 255, 1);
+}
+
+.boldpink {
+    color: hotpink;
+    font-weight: bolder;
+}
+
+.warning {
+    color: rgba(255, 204, 0, 1);
+    font-weight: bolder;
+}
+
+button.marginH {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#placedcards {
+    padding-top: 2px;
+}
+
+.dimparent {
+    width: 100%;
+    height: 100%;
+}
+.overlay {
+    position:absolute;
+    height:68px;
+    width:100%;
+    background-color:#ccc;
+    opacity: 0;
+    z-index: 0;
+}
+
+.overlay.overlayactive {
+    opacity: 0.5;
+    z-index: 9999;
+}
+
+.dim {
+    position: relative;
+    top: 1px;
+    width: 100%;
+    height: 68px;
+}
+
+.buttons {
+    margin: 3px auto;
+    height: 40px;
+    text-align: center;
+}
+
+.btn-sm.btn-lg {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.selectedcard {
+    top: -5px;
+}
+
+.maginTop {
+    margin-top: 5px;
+}
+
+.btn.btn-default.btn-width, .btn.btn-primary.btn-width {
+    width: 120px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+@media screen and (min-width: 640px) {
+    .cards {
+        width: 60px;
+        height: 80px;
+    }
+    .areadivcards {
+        height: 80px;
+    }
+    .dim, .overlay {
+        height: 82px;
+    }
+    .buttons {
+        height: 50px;
+        margin-top: 5px;
+    }
+    .btn-sm.btn-lg {
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        border-radius: 4px;
+    }
+    .selectedcard {
+        top: -10px;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+    .container.gamecontainer {
+        margin-top: 0;
+    }
+    div.hidden-xs>h2 {
+        font-size: 30px;
+    }
+    .container.gamecontainer {
+        width: 86%;
+    }
+    .col-xs-2.portraitimg {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .cards, .portrait {
+        width: 72px;
+        height: 96px;
+    }
+    .areadivcards {
+        height: 96px;
+    }
+    .cardcount {
+        font-size:1.1em;
+        width:30px;
+        height:30px;
+    }
+    .clockdiv {
+        width:30px;
+    }
+    .clock {
+        width:30px;
+        height:40px;
+        background-size: 30px 40px;
+        padding-top: 15px;
+        font-size: 1em;
+    }
+    #placedcards {
+        padding-top: 15px;
+    }
+    .dim, .overlay {
+        height: 100px;
+    }
+    .buttons {
+        height: 60px;
+        margin-top: 9px;
+    }
+    .btn-sm.btn-lg {
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.33;
+        border-radius: 6px;
+    }
+}

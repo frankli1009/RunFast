@@ -1,0 +1,187 @@
+﻿@using RunFast.Infrastructure
+@model RunFast.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        <h3>Change your account settings</h3>
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>Your details</h4>
+                    @foreach (var p in ViewData.ModelMetadata.Properties)
+                    {
+                        switch (p.PropertyName)
+                        {
+                            case "Player":
+                                var pPlayers = p.Model.GetType().GetProperties();
+                                foreach (var pPlayer in pPlayers)
+                                {
+                                    switch (pPlayer.Name)
+                                    {
+                                        case "Title":
+                                        case "FirstName":
+                                        case "LastName":
+                                        case "Type":
+                                        case "ValidUntil":
+                                            break;
+                                        default:
+                                            @Html.Hidden(p.PropertyName+"."+pPlayer.Name, pPlayer.GetValue(p.Model));
+                                            break;
+                                    }
+                                }
+                                break;
+                            default:
+                                @Html.Hidden(p.PropertyName, p.Model);
+                                break;
+                        }
+                    }
+
+                    <div class="form-group">
+                        <label>Title</label>
+                        @Html.DropDownListFor(x => x.Player.Title, new SelectList(MyHelpers.Titles), "- Select -", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>First name (*)</label>
+                        @Html.TextBoxFor(x => x.Player.FirstName, new { @class = "form-control" })
+                        @Html.ValidationMessage("Player.FirstName", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Last name (*)</label>
+                        @Html.TextBoxFor(x => x.Player.LastName, new { @class = "form-control" })
+                        @Html.ValidationMessage("Player.LastName", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Score balance</label>
+                        @Html.TextBoxFor(x => x.Player.Score, new { @class = "form-control disabled" })
+                    </div>
+                    <div class="form-group">
+                        @Html.HiddenFor(x => x.Player.Type)
+                        <label>Player type</label>
+                        @if (Model.Player.Type == 2)
+                        {
+                            <input type="text" value="VIP" class = "form-control disabled" />
+                        }
+                        else
+                        {
+                            <input type="text" value="Registered" class="form-control disabled" />
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.HiddenFor(x => x.Player.ValidUntil)
+                        @if (Model.Player.Type == 2)
+                        {
+                            <label>Valid until</label>
+                            <input type="text" value="@Model.Player.ValidUntil.ToString()" class="form-control disabled" />
+                        }
+                    </div>
+                    <div>
+                        <div>
+                            <input class="btn btn-primary btn-width" type="submit" value="Save details" />
+                            @if (Model.Player.Type == 1)
+                            {
+                                @Html.ActionLink("Upgrade To VIP", "UpgradeToVIP", new { type = 1 }, new { @class = "btn btn-default btn-width" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Renew VIP", "UpgradeToVIP", new { type = 2 }, new { @class = "btn btn-default btn-width" })
+                            }
+                        </div>
+                        <div class="maginTop">
+                            @Html.ActionLink("Buy Point", "BuyPoint", "Home", null, new { @class = "btn btn-default btn-width" })
+                            @Html.ActionLink("View statement", "ViewStatement", "Home", null, new { @class = "btn btn-default btn-width" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>Password</h4>
+                    <p>
+                        @if (Model.HasPassword)
+                    {
+                        @Html.ActionLink("Change your password", "ChangePassword", null, new { @class = "btn btn-default btn-primary" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Create", "SetPassword", null, new { @class = "btn btn-default btn-primary" })
+                        }
+                    </p>
+
+                        @*<dt>External Logins:</dt>
+                            <dd>
+                                @Model.Logins.Count [
+                                @Html.ActionLink("Manage", "ManageLogins") ]
+                            </dd>*@
+                        @*
+                            Phone Numbers can be used as a second factor of verification in a two-factor authentication system.
+
+                                See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+                                Uncomment the following block after you have set up two-factor authentication
+                        *@
+                        @*
+                            <dt>Phone Number:</dt>
+                            <dd>
+                                @(Model.PhoneNumber ?? "None")
+                                @if (Model.PhoneNumber != null)
+                    {
+                                    <br />
+                                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                                    }
+                                }
+                                else
+                                {
+                                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                                }
+                            </dd>
+                        *@
+
+
+                        @*<dt>Two-Factor Authentication:</dt>
+                            <dd>
+                                <p>
+                                    There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                                    for details on setting up this ASP.NET application to support two-factor authentication.
+                                </p>*@
+                        @*@if (Model.TwoFactor)
+                    {
+                        using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <text>Enabled
+                            <input type="submit" value="Disable" class="btn btn-link" />
+                                    </text>
+                                }
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <text>Disabled
+                                    <input type="submit" value="Enable" class="btn btn-link" />
+                                    </text>
+                                }
+                            }*@
+                        @*</dd>*@
+                </div>
+            </div>
+        </div>
+    </div>
+}
