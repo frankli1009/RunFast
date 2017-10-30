@@ -1,0 +1,159 @@
+﻿@model RunFast.Models.GameProcessor
+
+@{
+    ViewBag.Title = "Online Game";
+    // Portrait src
+    var prevPortrait = "/Content/PortraitImages/" + Model.PlayerCardsList.ElementAt(1).Portrait + ".png";
+    var nextPortrait = "/Content/PortraitImages/" + Model.PlayerCardsList.ElementAt(2).Portrait + ".png";
+    var playerPortrait = "/Content/PortraitImages/" + Model.PlayerCardsList.ElementAt(0).Portrait + ".png";
+    //    // The turn of a player who starts the game
+    //    var curPlayer = Model.PlayerCardsList.ElementAt(0).CurrentTurn ? Model.PlayerCardsList.ElementAt(0)
+    //: (Model.PlayerCardsList.ElementAt(1).CurrentTurn ? Model.PlayerCardsList.ElementAt(1) : Model.PlayerCardsList.ElementAt(2));
+    var playerType = Model.PlayerCardsList.ElementAt(0).PlayerType;
+    var awardGameCount = 6;
+    var gameCount = Model.PlayerCardsList.ElementAt(0).GameCount % awardGameCount;
+    var awardPoints = (playerType == "VIP" ? 50 : 30);
+    var toPlayCount = awardGameCount - gameCount;
+    var pluralForGame = (toPlayCount > 1 ? "games" : "game");
+}
+
+<div class="text-center hidden-xs">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+<div class="container gamecontainer">
+    @*relative table area*@
+    <div class="row">
+        <div id="gametable"></div>
+    </div>
+    @*Two oponents' img and cards count area, real table area*@
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 portraitimg">
+            <div class="text-center flex-container">
+                <div id="prevportrait">
+                    <img src="@prevPortrait" class="portrait" />
+                </div>
+                <div class="flex-container-Column">
+                    <div id="prevclock" class="clockdiv">
+                        <div class="clock prevclock">15</div>
+                    </div>
+                    <div class="cardcount">
+                        <span id="prevcount">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="playername">
+                <span id="prevname">@Model.PlayerCardsList.ElementAt(1).PlayerName</span>
+            </div>
+        </div>
+
+        <div id="placedcards" class="text-center col-xs-8 col-sm-8">
+            <p id="gamehint"></p>
+        </div>
+
+        <div class="col-xs-2 col-sm-2 portraitimg">
+            <div class="text-center flex-container">
+                <div class="flex-container-Column">
+                    <div id="nextclock" class="clockdiv">
+                        <div class="clock nextclock">15</div>
+                    </div>
+                    <div class="cardcount">
+                        <span id="nextcount">0</span>
+                    </div>
+                </div>
+                <div id="nextportrait">
+                    <img src="@nextPortrait" class="portrait" />
+                </div>
+            </div>
+            <div class="playername">
+                <span id="nextname">@Model.PlayerCardsList.ElementAt(2).PlayerName</span>
+            </div>
+        </div>
+    </div>
+    @*Current player's img, operation choice and time countdown area*@
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 portraitimg">
+            <div class="text-center flex-container">
+                <div id="playerportrait">
+                    <img src="@playerPortrait" class="portrait" />
+                </div>
+                <div id="playerclock" class="clockdiv">
+                    <div class="clock playerclock">15</div>
+                </div>
+            </div>
+            @*<div class="playername">
+                    <span>@Model.CurrentPlayerCards.PlayerName</span>
+                </div>*@
+            <div class="scorediv">
+                <span id="score" class="score">@Model.PlayerCardsList.ElementAt(0).Score</span>
+            </div>
+        </div>
+        <div class="col-xs-8 col-sm-8">
+            <div class="dimparent">
+                <div id="overlay" class="overlay"></div>
+                <div id="lastplacedcards" class="text-center dim"></div>
+                <div id="buttonsdiv" class="buttons">
+                    <button id="hostbtn" type="button" class="btn btn-default btn-sm btn-lg">CHANGE TABLE</button> <!--Change to HOST after the game starts-->
+                    <button id="passbtn" type="button" class="btn btn-default btn-sm btn-lg">Start</button> <!--Change to PASS after the game starts-->
+                    <button id="placebtn" type="button" class="btn btn-primary btn-sm btn-lg disabled nodisplay">PLACE</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 portraitimg">
+            <img />
+        </div>
+    </div>
+    @*Current Player's cards area*@
+    <div class="row">
+        <div id="cards" class="col-xs-12">
+        </div>
+    </div>
+    @*Take real area of div that contains cards due to its relative position*@
+    <div class="row areadivcards">
+        <div class="nodisplay">
+            <div id="gameid">@Model.CurrentGame.Id</div>
+            <div id="guestuniqueid">@Model.PlayerCardsList.ElementAt(0).UniqueId</div>
+            <div id="curturn">@*@curPlayer.Turn*@</div>
+            <div id="curplayer">
+                <div id="currentplayerid">@Model.PlayerCardsList.ElementAt(0).PlayerId</div>
+                <div id="playercards">
+                    @Model.PlayerCardsList.ElementAt(0).CardsString
+                </div>
+            </div>
+            <div id="prevplayer">
+                <div id="prevplayerid">@Model.PlayerCardsList.ElementAt(1).PlayerId</div>
+                <div id="prevcards">
+                    @Model.PlayerCardsList.ElementAt(1).CardsString
+                </div>
+            </div>
+            <div id="nextplayer">
+                <div id="nextplayerid">@Model.PlayerCardsList.ElementAt(2).PlayerId</div>
+                <div id="nextcards">
+                    @Model.PlayerCardsList.ElementAt(2).CardsString
+                </div>
+            </div>
+            <div id="awardgamecount">@awardGameCount</div>
+        </div>
+    </div>
+    @*Current Player's score area, extra operation choice area*@
+    <div id="extra" class="row gamebottom">
+        <div class="col-xs-12">
+            <p>
+                To be awarded <span id="awardpoints" class="red">@awardPoints</span> points, you only need to play <span id="toplaycount" class="red">@toPlayCount</span> more <span id="pluralforgame">@pluralForGame</span>.
+            </p>
+        </div>
+    </div>
+</div>
+<div id="passtext" class="passtext nodisplay text-center">PASS</div>
+<div id="gameover" class="gameover nodisplay text-center"></div>
+
+@section scripts {
+    <script src="~/Scripts/my_helper.js"></script>
+    <script src="~/Scripts/game.js"></script>
+    <script src="~/Scripts/timer_task.js"></script>
+    <script src="~/Scripts/cards_analysis.js"></script>
+    <script src="~/Scripts/my_script.js"></script>
+    <script src="~/Scripts/check_score.js"></script>
+    <script src="~/Scripts/selectCardHelper.js"></script>
+    <script src="~/Scripts/play_game.js"></script>
+}
