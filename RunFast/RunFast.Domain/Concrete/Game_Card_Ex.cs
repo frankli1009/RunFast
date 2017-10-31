@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RunsFast.Domain.Concrete
+namespace RunFast.Domain.Concrete
 {
     public class Game_Card_Ex
     {

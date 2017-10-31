@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using RunFast.Domain.Entities;
 using System.Data.SqlClient;
 using System.Data;
-using RunsFast.Domain.Concrete;
 using RunFast.Domain.Helpers;
 using System.Web.Helpers;
 using System.Data.Entity;
