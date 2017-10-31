@@ -556,16 +556,18 @@ function PlayerCards(cardsString, playerTurn) {
             var pipRank = card.pipRank - 1;
             for (var i = cardIndex - 1; i >= 0; i--) {
                 var nextone = this.cards[i];
-                if (nextone.pipRank === pipRank) {
+                // "nextone.pipRank < pipRank" means no card has the rank of pipRank
+                // "pipRank === 1" means Reached the highest rank, "2" does not take part in any straight
+                if (nextone.pipRank < pipRank || pipRank === 1) {
+                    break;
+                } else if (nextone.pipRank === pipRank) {
                     if ((puresuit && (nextone.suit === card.suit)) || (!puresuit)) {
                         straight.unshift(nextone);
-                        pipRank--;
                         // Result contains the start card itself
                         if (straight.length === count) return straight;
+                        pipRank--;
                     }
-                } else if (nextone.pipRank < pipRank) {
-                    break;
-                }
+                } 
             }
         }
         if (partly) return straight;
@@ -888,12 +890,13 @@ function PlayerCards(cardsString, playerTurn) {
     }
 
     // Check whether the cards are part of a full house(sorted, descending)
-    // The already selected cards must be a triplet plus a single (4 cards)
+    // The already selected cards must be a triplet plus a single (4 cards) - help select pair
+    // Or a pair plus a single (3 cards) - help select triple
     // Return 0 if not, else return the pipRank with only 1 card
     this.checkFullHousePartly = function () {
         console.log("checkFullHousePartly");
-        // Help check only when there is a triplet plus single cards
-        if (this.cards.length !== 4) return 0;
+        // Help check only when there is a triplet plus a single or a pair plus a single
+        if (this.cards.length <3 || this.cards.length > 4) return 0;
         console.log(this.cards.length);
 
         var count1 = 0;
@@ -912,11 +915,11 @@ function PlayerCards(cardsString, playerTurn) {
                 count2++;
             } else if (selCard.isSameRank(card2)) {
                 count2++;
-            } else return 0; // A third pipRank card appears
+            } else return 0; // A card with another pipRank appears
         }
-        console.log("count1 & count2");
-        console.log(count1);
-        console.log(count2);
+        //console.log("count1 & count2");
+        //console.log(count1);
+        //console.log(count2);
 
         return (count1 === 1 ? card1.pipRank : (count2 === 1 ? card2.pipRank : 0));
     }

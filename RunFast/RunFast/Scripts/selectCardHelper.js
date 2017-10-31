@@ -15,7 +15,7 @@ function helperSelectedForNewBattle(card, selected) {
 }
 
 // Helper function to help select or deselect one of the pair cards.
-// The already selected cards must be a triplet plus a single.
+// The already selected cards must be a triplet plus a single (4 cards) or a pair plus a single (3 cards).
 function helpSelectedForNewBattleFullHouse(card, selected) {
     console.log("helpSelectedForNewBattleFullHouse");
     var selectedCards = getSelectedCards();
@@ -31,11 +31,13 @@ function helpSelectedForNewBattleFullHouse(card, selected) {
     if (selected) {
         var siblings = game.getPlayerCards(game.currentPlayerTurn).getSiblings(singleCard);
         console.log(siblings);
-        if (siblings.length === 0) return false;
-        singleCard = siblings[0];
-        console.log(singleCard);
-        console.log(selected);
-        helperSelectCard(singleCard, false);
+        if (siblings.length + selectedCards.cards.length < 5) return false;
+        if (selectedCards.cards.length === 4) {
+            helperSelectCard(siblings[0], false);
+        } else {
+            helperSelectCard(siblings[0], false);
+            helperSelectCard(siblings[1], false);
+        }
     } else {
         if (singleCard.isSameRank(card)) {
             helperSelectCard(singleCard, true);
@@ -169,9 +171,7 @@ function helperSelectedForBattle(card, selected) {
             helperSelectedForNewBattle(card, selected);
             break;
         case BattleType.Single:
-            if (selected && selCount > 1) {
-                $selected.not("[data-pip='" + card.pip + "'][data-suit='" + card.suit + "']").removeClass("selectedcard");
-            }
+            helperSelectedForBattleSingle(card, selected, $selected, selCount);
             break;
         case BattleType.Pair:
             helperSelectedForBattlePair(card, selected, $selected, selCount);
@@ -191,6 +191,17 @@ function helperSelectedForBattle(card, selected) {
         case BattleType.PairStraight:
             if (selCount === 1 && selected) helperSelectedForBattlePairStraight(card);
             break;
+    }
+}
+
+function helperSelectedForBattleSingle(card, selected, $selected, selCount) {
+    if (selected && selCount > 1) {
+        var siblings = game.getPlayerCards(game.currentPlayerTurn).getSiblings(card);
+        if (siblings.length < 2 || (siblings.length === 2 && card.pipRank !== 2)) {
+            $selected.not("[data-pip='" + card.pip + "'][data-suit='" + card.suit + "']").removeClass("selectedcard");
+        } else {
+            $selected.not("[data-pip='" + card.pip + "']").removeClass("selectedcard");
+        }
     }
 }
 

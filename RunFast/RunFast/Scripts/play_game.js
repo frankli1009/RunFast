@@ -13,6 +13,7 @@ var placeddivWidth; // The width of the parent div of placed cards, used to adju
 var index; // The index of current processing card which will be adjusted position and displayed
 var timeoutIdDispatchCards; // The ID of the timeout, used to clear the timeout for dispatching cards
 var screenWidth; // Current screen width, used to get card width
+var screenHeight; // Current screen height, used to check whether need to hide main menu bar
 var cardWidth; // The width of cards
 var cardWidthCovered; // The width of cards, deducted by the width of coverage
 var adjustedCards = []; // The cards that have been adjusted and displayed, used to sort and adjust position
@@ -38,6 +39,29 @@ var $lastPlacedCards = null; // The div area to display the second latest dealt 
 var dispatchingCards = false; // Whether the cards-dispatching process is undergoing.
 var needRelocate = false; // When dispatching cards, whether the cards that have dispatched need to relocate
 
+// onresize event to adjustfy the display effect
+function onResize() {
+    getCurrentSizeInfo();
+    if ($gameover.is(":visible")) {
+        locateGameOver();
+    }
+    relocatePlacedCards($placedCards);
+    relocatePlacedCards($lastPlacedCards);
+    if ($cards.children().length > 0) {
+        if (dispatchingCards) needRelocate = true;
+        else reloadCardsImageAfterPlace(game.currentPlayerTurn);
+    }
+    if (screenHeight < 440) {
+        $(".navbar.navbar-inverse.navbar-fixed-top").hide();
+        $(".container.body-content").css({ "margin-top": "-40px" });
+        $("#homebtn").show();
+    } else {
+        $(".navbar.navbar-inverse.navbar-fixed-top").show();
+        $(".container.body-content").css({ "margin-top": "auto" });
+        $("#homebtn").hide();
+    }
+}
+
 $(function () {
     // Get guest player's uniqueId
     game.currentPlayerUniqueId = $("#guestuniqueid").text();
@@ -53,8 +77,6 @@ $(function () {
     $placedCards = $("#placedcards");
     $lastPlacedCards = $("#lastplacedcards");
 
-    getCurrentSizeInfo();
-
     window.onbeforeunload = function (e) {
         e = e || window.event;
 
@@ -67,23 +89,14 @@ $(function () {
         }
     };
 
-    window.onresize = function (e) {
-        getCurrentSizeInfo();
-        if ($gameover.is(":visible")) {
-            locateGameOver();
-        }
-        relocatePlacedCards($placedCards);
-        relocatePlacedCards($lastPlacedCards);
-        if ($cards.children().length > 0) {
-            if (dispatchingCards) needRelocate = true;
-            else reloadCardsImageAfterPlace(game.currentPlayerTurn);
-        }
-    }
+    window.onresize = onResize;
+    onResize();
 
     $(document).on("mouseup", function () {
         //console.log("document.mouseup");
         documentMouseUp();
     });
+    $("#homebtn").on("click", onHome);
     $("#hostbtn").on("click", function () {
         if ($(this).text() === "HOST") {
             host(true);
@@ -143,7 +156,7 @@ function checkScoreEnough(score) {
     }
 }
 
-// Display the gameover message
+// Display the message using gameover div box
 function displayMessage(msgHead, msgContent, msgWarning) {
     // Display result
     var $gameover = $("#gameover");
@@ -381,6 +394,7 @@ function recoverPlayButtons() {
 }
 
 function getCurrentSizeInfo() {
+    screenHeight = $(window).height();
     screenWidth = $(window).width();
     if (screenWidth >= 768) {
         cardWidth = 72;
