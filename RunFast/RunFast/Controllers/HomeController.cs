@@ -590,7 +590,7 @@ namespace RunFast.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "RUNS FAST is a card game created with C#, ASP.NET, MVC5, HTML5, CSS3 and JAVASCRIPT.";
+            ViewBag.Message = "RunFast is a card game created with C#, ASP.NET, MVC5, HTML5, CSS3 and JAVASCRIPT.";
 
             return View();
         }
