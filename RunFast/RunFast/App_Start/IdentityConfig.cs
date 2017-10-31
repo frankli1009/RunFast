@@ -34,7 +34,7 @@ namespace RunFast
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
             myMessage.From = new EmailAddress(
-                                "register@franklidev.com", "Runs Fast");
+                                "register@franklidev.com", "RunFast");
             myMessage.Subject = message.Subject;
             myMessage.HtmlContent = message.Body;
 
