@@ -117,3 +117,4 @@ function download(data, filename, type) {
         }, 0);
     }
 }
+

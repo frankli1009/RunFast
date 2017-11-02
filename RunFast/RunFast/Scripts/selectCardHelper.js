@@ -352,3 +352,55 @@ function helperSelectedForBattlePair(card, selected, $selected, selCount) {
     }
 }
 
+// Touch helper
+function TouchHelper(target) {
+    this.touchTargets = [];
+    this.lastTarget = null;
+
+    this.reset = function () {
+        this.touchTargets = [];
+        this.lastTarget = null;
+    }
+
+    // Add a target to this.touchTargets if not already exists
+    this.addTouchTarget = function (target) {
+        var found = false;
+        for (var i = 0; i < this.touchTargets.length; i++) {
+            if (this.touchTargets[i] === target) {
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            if (this.lastTarget !== target) {
+                //console.log("addTouchTarget - remove");
+                //console.log(this.lastTarget);
+                this.touchTargets.pop();
+                $(this.lastTarget).toggleClass("selectedcard");
+                this.lastTarget = target;
+            }
+        } else {
+            //console.log("addTouchTarget");
+            //console.log(target);
+            this.touchTargets.push(target);
+            this.lastTarget = target;
+            $(this.lastTarget).toggleClass("selectedcard");
+        }
+    }
+
+    this.checkTouchOver = function (changedTouch) {
+        //e.originalEvent.changedTouches[0]
+        var x = changedTouch.pageX - window.pageXOffset;
+        var y = changedTouch.pageY - window.pageYOffset;
+        var target = document.elementFromPoint(x, y);
+
+        if (target) {
+            this.addTouchTarget(target);
+            return $(target);
+        } else {
+            return null;
+        }
+    }
+
+    this.addTouchTarget(target);
+}

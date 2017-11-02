@@ -23,6 +23,7 @@ var timer = null; // The timer object, used to count down for clock, hide pass i
 var $otherCounts = []; // The element array to show the number of cards that other players currently hold (two computer players)
 var isMouseDown = false; // Keep track for the state of mouse down on the card to enable a dragging multiple select
 var mousedownCard = null; // Keep the card with mouse down event to enable AI select when the same card with mouse up event
+var touchHelper = null; 
 // The following two will be updated every time when validate selected cards, so they can be used for placing action
 var selectedCards = null; // The cards (PlayerCards object) have been selected and are ready
 var userDealInfo = null; // The deal info for the selected cards by the user 
@@ -549,16 +550,20 @@ function AdjustImgPosition($curimg) {
 function addTouchEventToCardImgs($curimg) {
     // Select a card on mousedown, and mousedown and drag to multi select cards
     $curimg.on("touchstart", function (e) {
+        //console.log("touchstart");
         if (game.battle === null) return false;
         if (hosted) return false;
 
         isMouseDown = true;
-        $(this).toggleClass("selectedcard");
+        e = e || window.Event;
+        //console.log(e);
+        //console.log($(this));
+        touchHelper = new TouchHelper(e.target);
+
         mousedownCard = new Card(parseInt($(this).attr("data-pip")), parseInt($(this).attr("data-piprank")),
             parseInt($(this).attr("data-suit")), parseInt($(this).attr("data-suitrank")));
 
-        e = e || window.Event;
-        if (e) e.preventDefault();
+        e.preventDefault();
 
         return false; // prevent text selection
     })
@@ -566,31 +571,33 @@ function addTouchEventToCardImgs($curimg) {
         if (game.battle === null) return false;
         if (hosted) return false;
 
-        if (isMouseDown) {
-            $(this).toggleClass("selectedcard");
-        }
-
+        if (!isMouseDown) return false;
         e = e || window.Event;
+        if (touchHelper) touchHelper.checkTouchOver(e.originalEvent.changedTouches[0]);
+
         if (e) e.preventDefault();
     })
     .on("touchend", function (e) {
-        //console.log("curimg.mouseup");
         if (game.battle === null) return false;
         if (hosted) return false;
 
-        var card = new Card(parseInt($(this).attr("data-pip")), parseInt($(this).attr("data-piprank")),
-            parseInt($(this).attr("data-suit")), parseInt($(this).attr("data-suitrank")));
-        if (mousedownCard.isSameCard(card)) {
-            //console.log("mouseup with the same card");
-            helperSelectedForBattle(card, $(this).hasClass("selectedcard"));
-        } else {
-            helperSelectedForNewBattle(card, $(this).hasClass("selectedcard"));
+        e = e || window.Event;
+
+        var $card = null;
+        if (touchHelper) $card = touchHelper.checkTouchOver(e.originalEvent.changedTouches[0]);
+        //console.log(e);
+        //console.log($card);
+        if ($card !== null) {
+            var card = new Card(parseInt($card.attr("data-pip")), parseInt($card.attr("data-piprank")),
+                parseInt($card.attr("data-suit")), parseInt($card.attr("data-suitrank")));
+            //console.log(card);
+            if (mousedownCard.isSameCard(card)) {
+                helperSelectedForBattle(card, $card.hasClass("selectedcard"));
+            }
         }
 
         documentMouseUp();
-
-        e = e || window.Event;
-        if (e) e.preventDefault();
+        e.preventDefault();
     })
     .bind("selectstart", function () {
         return false; // prevent text selection in IE
@@ -985,6 +992,7 @@ function reloadCardsImageAfterPlace(turn) {
                     .attr("data-suitrank", card.suitRank)
                     .css({ "left": startLeft + "px", "z-index": zindex });
                 $curimg.appendTo($cards);
+                addTouchEventToCardImgs($curimg);
                 addMouseEventToCardImgs($curimg);
                 zindex += 10;
                 startLeft += cardWidthCovered;
